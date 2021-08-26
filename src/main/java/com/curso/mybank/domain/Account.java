@@ -6,9 +6,9 @@ public class Account implements Serializable{
 
 	private static final long serialVersionUID=1L;
 
-	private double balance;
+	protected double balance;
 
-	public Account(double balance) {
+	protected Account(double balance) {
 		super();
 		this.balance = balance;
 	}
