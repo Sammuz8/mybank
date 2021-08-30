@@ -3,6 +3,7 @@ package com.curso.mybank;
 import com.curso.mybank.domain.Account;
 import com.curso.mybank.domain.CheckingAccount;
 import com.curso.mybank.domain.Customer;
+import com.curso.mybank.domain.OverdraftException;
 import com.curso.mybank.domain.SavingsAccount;
 
 /**
@@ -52,7 +53,7 @@ public class AuxiliarFunciones {
 		cliente1.addAccount(cliente2.getAccount(numAccountCompartido));
 	}
 	
-	public static void operarSavingAccount(Customer cliente, int numAccount) {
+	public static void operarSavingAccount(Customer cliente, int numAccount) throws OverdraftException {
 		
 		System.out.println("Acciones de cliente "+cliente.getFirstName()
 				+" "+cliente.getLastName()+" con su Saving Account");
@@ -68,7 +69,7 @@ public class AuxiliarFunciones {
 		System.out.println("\n"+cliente);
 	}
 	
-	public static void operarCheckingAccount(Customer cliente, int numAccount) {
+	public static void operarCheckingAccount(Customer cliente, int numAccount) throws OverdraftException {
 		boolean hasOverdraft=false; 
 		if (cliente.getAccount(numAccount) instanceof CheckingAccount) {
 			CheckingAccount cuenta= (CheckingAccount) cliente.getAccount(0);
@@ -90,7 +91,7 @@ public class AuxiliarFunciones {
 		System.out.println("\n"+cliente);
 	}
 	
-	public static void operarCuentacompartida(Customer cl3, Customer cl4) {
+	public static void operarCuentacompartida(Customer cl3, Customer cl4) throws OverdraftException {
 		System.out.println("Acciones de cliente "+cl4.getFirstName()
 		+" con su Checking Account compartido con "+cl3.getFirstName());
 		Account cuenta=cl4.getAccount(0);

@@ -19,14 +19,16 @@ public class CheckingAccount extends Account {
 	}
 
 	@Override
-	public boolean withdraw(double retirada) {
+	public boolean withdraw(double retirada) throws OverdraftException {
 		// TODO Auto-generated method stub
 		double overdraftNeeded = 0;
+		if (retirada<=0) return false;
 		if (balance < retirada) {
 			overdraftNeeded = retirada - balance;
 			
 			if (overdraftAmount < overdraftNeeded) {
-				return false;
+				throw new OverdraftException("cantidad retirada supera el limite",
+						overdraftNeeded-overdraftAmount);
 			} else {
 				balance = 0;
 				overdraftAmount -= overdraftNeeded;

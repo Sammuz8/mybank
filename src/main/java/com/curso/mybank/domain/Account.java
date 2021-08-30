@@ -21,10 +21,11 @@ public class Account implements Serializable{
 		balance+=cantidad;
 		return true;
 	}
-	public boolean withdraw(double retirada) {
+	public boolean withdraw(double retirada) throws OverdraftException {
 		if (retirada<=0) return false;
 		if (retirada>getBalance()){
-			return false;
+			throw new OverdraftException("cantidad retirada supera el limite",
+					retirada-getBalance());
 		}else {
 			balance-=retirada;
 		}
